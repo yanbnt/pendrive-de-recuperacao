@@ -1,0 +1,5 @@
+# Nunca converter quebras de linha destes arquivos:
+#  .bat precisa de CRLF (com LF o cmd se perde nos rotulos e entra em loop)
+#  .ps1 precisa de UTF-8 com BOM (acentos no Windows PowerShell 5.1)
+*.bat -text diff
+*.ps1 -text diff

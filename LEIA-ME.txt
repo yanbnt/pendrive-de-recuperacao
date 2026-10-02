@@ -1,0 +1,83 @@
+﻿PENDRIVE DE RECUPERAÇÃO
+Criado por Yan Bento Monteiro
+=========================================================
+
+Prepara um pendrive que conserta a inicialização do Windows
+(erro SrtTrail.txt, tela azul em loop, boot corrompido).
+
+
+QUAL ARQUIVO USAR (pasta dist)
+---------------------------------------------------------
+  Pendrive de Recuperação.exe
+      Portátil. Dois cliques e usa, sem instalar.
+      Bom para levar no pendrive ou na rede.
+
+  Instalar Pendrive de Recuperação.exe
+      Instala no PC e cria atalho na Área de Trabalho e
+      no Menu Iniciar. Desinstala por Configurações > Aplicativos.
+
+
+COMO USAR
+---------------------------------------------------------
+1. Abra o programa, escolha o pendrive e o tipo:
+
+   Pendrive simples
+     O PC ainda abre a tela azul de recuperação.
+     No PC: Solução de Problemas > Opções avançadas >
+     Prompt de Comando > digite  D:\RepararInicializacao.bat
+     (se não achar, tente E:, F:, G:...)
+
+   Pendrive bootável (plugar e usar)
+     O PC fica em loop ou não abre a recuperação.
+     Precisa da ISO do Windows (links na própria janela).
+     No PC: ligue apertando F12/F11/F8/Esc, escolha o
+     pendrive e o menu de reparo abre sozinho.
+
+2. No menu de reparo, digite o número recomendado:
+   [1] Reparo completo   chkdsk, atualização, sfc e boot
+   [2] Só o boot         bootrec + bcdboot
+   [3] Só atualização    desfaz atualização travada
+   [4] Modo Seguro       tela azul por driver (ex.: vídeo)
+   [5] Modo normal       desfaz a opção 4
+   [6] Diagnóstico       descobre se é defeito de hardware
+
+   Logs, cópia de segurança do boot e as telas azuis registradas
+   (pasta Minidump) ficam no pendrive.
+
+
+É HARDWARE?
+---------------------------------------------------------
+Sinais: cada tela azul mostra um erro diferente, o PC dá tela
+azul até ligando pelo pendrive, ou o reparo completo não resolveu.
+Nesse caso nenhum reparo de software resolve.
+
+Teste de memória: ligue pelo pendrive bootável, no menu de boot
+aperte TAB e escolha "Teste de memoria (RAM)". Olhe a linha
+"Status": "Problemas de hardware foram detectados" = troque a
+memória. Memória OK: teste a fonte e procure capacitores
+estufados na placa-mãe.
+
+
+32 E 64 BITS
+---------------------------------------------------------
+O programa roda em Windows 10/11 de 32 e de 64 bits.
+Para o pendrive bootável, a ISO precisa ser da mesma
+arquitetura do PC com problema:
+  PC 64 bits  -> ISO do Windows 10 ou 11
+  PC 32 bits  -> ISO do Windows 10 32 bits (o 11 não existe
+                 em 32 bits; na Ferramenta de Criação de Mídia
+                 escolha Arquitetura: 32 bits (x86))
+
+
+DICA
+---------------------------------------------------------
+Coloque o USB em 1º lugar na ordem de boot da BIOS dos PCs
+da empresa: com o pendrive plugado o PC liga direto no reparo,
+sem ele liga normal.
+
+
+PARA DESENVOLVEDOR
+---------------------------------------------------------
+  src\        código-fonte (PowerShell, .bat, C# dos launchers)
+  build.ps1   gera os dois .exe em dist\ depois de qualquer mudança:
+              powershell -ExecutionPolicy Bypass -File build.ps1
