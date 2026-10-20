@@ -4,6 +4,20 @@ Prepara um pendrive que conserta a inicialização do Windows 10/11: erro `SrtTr
 
 **Criado por Yan Bento Monteiro**
 
+<p align="center">
+  <img src="docs/preparar-pendrive.png" alt="Janela do Preparar Pendrive durante a preparação de um pendrive bootável" width="576">
+</p>
+
+## Por que existe
+
+Quando o Windows não liga, o técnico costuma entrar no Prompt de Comando da recuperação e digitar à mão `chkdsk`, `sfc`, `bootrec`, `bcdboot`... e torcer para acertar a letra do disco. Este projeto junta tudo num pendrive:
+
+- **Plugar e usar:** o pendrive bootável abre o menu de reparo sozinho, sem precisar digitar nada;
+- **Lê a causa do erro** no `SrtTrail.txt` e recomenda a opção certa;
+- **Acha sozinho a letra do Windows** no ambiente de recuperação (que quase nunca é `C:`);
+- **Usa os comandos certos para o ambiente de recuperação:** `sfc /scannow` sozinho verifica o próprio ambiente e não o Windows do PC;
+- **Mostra quando é hardware:** teste de memória no menu de boot e diagnóstico das telas azuis.
+
 ## Download
 
 Na página **[Releases](../../releases)**:
@@ -35,11 +49,27 @@ No menu de boot, **TAB → "Teste de memoria (RAM)"** testa a memória sem depen
 | **[5] Modo normal** | Desfaz a opção 4 |
 | **[6] Diagnóstico** | Conta as telas azuis, verifica os discos e agenda o teste de memória |
 
+<p align="center">
+  <img src="docs/menu-reparo.png" alt="Menu de reparo mostrando a causa do erro e a opção recomendada" width="640">
+</p>
+
 O script lê o `SrtTrail.txt`, mostra a causa do erro e recomenda a opção certa. Logs, cópia de segurança do boot (BCD) e as telas azuis registradas (`Minidump`) ficam salvos no pendrive.
 
 ## É hardware?
 
 Sinais: cada tela azul mostra um erro diferente, o PC trava até ligando pelo pendrive, ou o reparo completo não resolveu. Nesses casos nenhum reparo de software resolve: rode o teste de memória e verifique fonte e placa-mãe.
+
+<p align="center">
+  <img src="docs/diagnostico.png" alt="Tela de diagnóstico: telas azuis registradas, saúde dos discos e teste de memória" width="689">
+</p>
+
+## Instalador
+
+Além da versão portátil, há um instalador que cria atalhos e aparece em *Configurações → Aplicativos* para desinstalar.
+
+<p align="center">
+  <img src="docs/instalador.png" alt="Assistente de instalação" width="536">
+</p>
 
 ## Estrutura
 
